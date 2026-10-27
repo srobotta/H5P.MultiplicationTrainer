@@ -11,11 +11,11 @@
     },
     {
       "label": "Kleinster Faktor",
-      "description": "Die kleinste Zahl, welche bei einer Aufgabe erscheinen darf."
+      "description": "Die kleinste Zahl, welche bei einer Aufgabe als Faktor erscheinen darf."
     },
     {
       "label": "Grösster Faktor",
-      "description": "Die grösste Zahl, welche bei einer Aufgabe erscheinen darf."
+      "description": "Die grösste Zahl, welche bei einer Aufgabe als Faktor erscheinen darf."
     },
     {
       "label": "Texte und Übersetzungen",
@@ -43,11 +43,12 @@
           "default": "Richtig: :count"
         },
         {
-          "label": "Multiplikationszeichen"
+          "label": "Multiplikationszeichen",
+          "default": "×"
         },
         {
           "label": "Kopfzeile bei der Zusammenfassung des Ergebnisses",
-          "default": "Zeit abgelaufen! Hier sind deine Ergebnisse:"
+          "default": "Die Zeit ist abgelaufen! Hier sind deine Ergebnisse:"
         },
         {
           "label": "Text für die Summe",
@@ -67,11 +68,11 @@
           "default": "Ergebnis"
         },
         {
-          "label": "Textmarke für eine richtig gelöste Aufgabe",
+          "label": "Text für eine richtig gelöste Aufgabe.",
           "default": "Richtig"
         },
         {
-          "label": "Textmarke für eine falsch gelöste Aufgabe",
+          "label": "Text für eine falsch gelöste Aufgabe",
           "description": "Platzhalter :answer für das korrekte Ergebnis.",
           "default": "Falsch (:answer)"
         },
@@ -80,7 +81,7 @@
           "default": "Du hast keine Aufgabe beantwortet."
         },
         {
-          "label": "Platzhalter für eine leere Antwort",
+          "label": "Platzhalter für eine leere Antwort.",
           "default": "(leer)"
         }
       ]
