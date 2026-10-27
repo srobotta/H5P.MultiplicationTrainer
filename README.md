@@ -15,5 +15,3 @@ Checkout this repository or download the zip. Use the Python build
 script to build the h5p package. The so created file
 `Multiplication_Trainer-X.Y.Z.h5p` is the H5P file that can be used
 at your preferred ecosystem where H5 content is displayed.
-
-Todo: automate the build.
