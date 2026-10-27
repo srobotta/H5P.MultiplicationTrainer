@@ -1,0 +1,89 @@
+{
+  "semantics": [
+    {
+      "label": "Anleitung",
+      "description": "Wird am Startbildschirm oberhalb des Start-Knopfes angezeigt.",
+      "default": "<p>Löse soviel Aufgaben wie möglich, bevor die Zeit abläuft!</p>"
+    },
+    {
+      "label": "Übungszeit (in Sekunden)",
+      "description": "Wie lange dürfen Aufgaben gerechnet werden (in Sekunden)."
+    },
+    {
+      "label": "Kleinster Faktor",
+      "description": "Die kleinste Zahl, welche bei einer Aufgabe erscheinen darf."
+    },
+    {
+      "label": "Grösster Faktor",
+      "description": "Die grösste Zahl, welche bei einer Aufgabe erscheinen darf."
+    },
+    {
+      "label": "Texte und Übersetzungen",
+      "fields": [
+        {
+          "label": "Start Knopf",
+          "default": "Start"
+        },
+        {
+          "label": "Senden Knopf",
+          "default": "Eingabe"
+        },
+        {
+          "label": "Nochmal Knopf",
+          "default": "Nochmal"
+        },
+        {
+          "label": "Anzeige zur verbleibenden Zeit",
+          "description": "Platzhalter :time für die verbleibende Zeit.",
+          "default": "Verbleibende Zeit: :time"
+        },
+        {
+          "label": "Anzeige zu gelösten Aufgaben",
+          "description": "Platzhalter :count für die bisher richtig gelösten Aufgaben.",
+          "default": "Richtig: :count"
+        },
+        {
+          "label": "Multiplikationszeichen"
+        },
+        {
+          "label": "Kopfzeile bei der Zusammenfassung des Ergebnisses",
+          "default": "Zeit abgelaufen! Hier sind deine Ergebnisse:"
+        },
+        {
+          "label": "Text für die Summe",
+          "description": "Platzhalter :correct und :total für richtige und Gesamtzahl der Aufgaben.",
+          "default": "Du hast :correct von :total richtig."
+        },
+        {
+          "label": "Überschrift für Spalte: Aufgabe",
+          "default": "Aufgabe"
+        },
+        {
+          "label": "Überschrift für Spalte: Antwort",
+          "default": "Deine Antwort"
+        },
+        {
+          "label": "Überschrift für Spalte: Ergebnis",
+          "default": "Ergebnis"
+        },
+        {
+          "label": "Textmarke für eine richtig gelöste Aufgabe",
+          "default": "Richtig"
+        },
+        {
+          "label": "Textmarke für eine falsch gelöste Aufgabe",
+          "description": "Platzhalter :answer für das korrekte Ergebnis.",
+          "default": "Falsch (:answer)"
+        },
+        {
+          "label": "Text, welcher angezeigt wird, wenn keine Aufgabe gelöst wurde.",
+          "default": "Du hast keine Aufgabe beantwortet."
+        },
+        {
+          "label": "Platzhalter für eine leere Antwort",
+          "default": "(leer)"
+        }
+      ]
+    }
+  ]
+}

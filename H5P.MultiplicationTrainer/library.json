@@ -1,0 +1,28 @@
+{
+  "title": "Multiplication Trainer",
+  "description": "Timed practice of the multiplication tables (1x1). The learner solves as many tasks as possible within a configurable time and then sees a list of all tasks with their answers marked right or wrong.",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 4,
+  "runnable": 1,
+  "author": "Stephan",
+  "license": "MIT",
+  "machineName": "H5P.MultiplicationTrainer",
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 24
+  },
+  "embedTypes": [
+    "iframe"
+  ],
+  "preloadedCss": [
+    {
+      "path": "css/multiplication-trainer.css"
+    }
+  ],
+  "preloadedJs": [
+    {
+      "path": "js/multiplication-trainer.js"
+    }
+  ]
+}
