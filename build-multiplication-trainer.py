@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 """
 Package the H5P.MultiplicationTrainer content type into a ready-to-upload .h5p
-file. Run it with no arguments for the default German 1x1 (Einmaleins) package,
-or pass options to tweak the content. Works on Windows and Linux (standard
-library only).
+file. Run it with no arguments for the default build, which is the recommended
+way to create the package.
+The optional arguments may change the default values in the package when
+using it, they still can be changed during runtime installation.
+Works on Windows and Linux (standard library only).
 
 Examples:
     python build-multiplication-trainer.py
-    python build-multiplication-trainer.py --title "Einmaleins" --seconds 90
-    python build-multiplication-trainer.py --min 2 --max 12 --lang en
+    python build-multiplication-trainer.py --seconds 90
+    python build-multiplication-trainer.py --min 2 --max 12
+    python build-multiplication-trainer.py --out custom_name.h5p
 """
 
 import argparse
