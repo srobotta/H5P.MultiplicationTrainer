@@ -5,8 +5,8 @@
   "minorVersion": 0,
   "patchVersion": 5,
   "runnable": 1,
-  "author": "Stephan",
-  "license": "MIT",
+  "author": "Stephan Robotta",
+  "license": "CC BY 4.0",
   "machineName": "H5P.MultiplicationTrainer",
   "coreApi": {
     "majorVersion": 1,
