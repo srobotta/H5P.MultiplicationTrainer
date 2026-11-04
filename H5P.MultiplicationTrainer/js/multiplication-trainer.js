@@ -112,22 +112,22 @@ H5P.MultiplicationTrainer = (function ($) {
    * Show the start screen with the intro and the Start button.
    */
   MultiplicationTrainer.prototype.renderStart = function () {
-    var self = this;
+    const self = this;
     this.root.innerHTML = '';
 
-    var screen = el('div', 'mt-screen mt-start');
+    const screen = el('div', 'mt-screen mt-start');
 
     if (this.params.intro) {
-      var intro = el('div', 'mt-intro');
+      const intro = el('div', 'mt-intro');
       intro.innerHTML = this.params.intro;
       screen.appendChild(intro);
     }
 
-    var hint = el('p', 'mt-duration-hint');
+    const hint = el('p', 'mt-duration-hint');
     hint.textContent = this.t('timeLeftLabel', { time: formatTime(this.params.durationSeconds) });
     screen.appendChild(hint);
 
-    var startBtn = el('button', 'mt-button mt-start-button');
+    const startBtn = el('button', 'mt-button mt-start-button');
     startBtn.type = 'button';
     startBtn.textContent = this.t('startButton');
     startBtn.addEventListener('click', function () { self.startRound(); });
@@ -148,7 +148,7 @@ H5P.MultiplicationTrainer = (function ($) {
     this.renderPlay();
     this.tick();
     // Update the countdown a few times a second for a smooth display.
-    var self = this;
+    const self = this;
     this.timer = setInterval(function () { self.tick(); }, 250);
     this.nextTask();
   };
@@ -158,9 +158,9 @@ H5P.MultiplicationTrainer = (function ($) {
    */
   MultiplicationTrainer.prototype.renderPlay = function () {
     this.root.innerHTML = '';
-    var screen = el('div', 'mt-screen mt-play');
+    const screen = el('div', 'mt-screen mt-play');
 
-    var status = el('div', 'mt-status');
+    const status = el('div', 'mt-status');
     this.$time = el('span', 'mt-time');
     this.$score = el('span', 'mt-score');
     status.appendChild(this.$time);
@@ -179,7 +179,7 @@ H5P.MultiplicationTrainer = (function ($) {
    * Update the countdown; finish the round when the time is up.
    */
   MultiplicationTrainer.prototype.tick = function () {
-    var remaining = Math.max(0, Math.round((this.endTime - Date.now()) / 1000));
+    const remaining = Math.max(0, Math.round((this.endTime - Date.now()) / 1000));
     if (this.$time) {
       this.$time.textContent = this.t('timeLeftLabel', { time: formatTime(remaining) });
     }
@@ -198,30 +198,30 @@ H5P.MultiplicationTrainer = (function ($) {
    * Present a new random task and focus the input field.
    */
   MultiplicationTrainer.prototype.nextTask = function () {
-    var self = this;
-    var a = randInt(this.minFactor, this.maxFactor);
-    var b = randInt(this.minFactor, this.maxFactor);
+    const self = this;
+    const a = randInt(this.minFactor, this.maxFactor);
+    const b = randInt(this.minFactor, this.maxFactor);
     this.current = { a: a, b: b, product: a * b };
 
     this.$task.innerHTML = '';
 
-    var equation = el('span', 'mt-equation');
+    const equation = el('span', 'mt-equation');
     equation.textContent = a + ' ' + this.t('multiplicationSign') + ' ' + b + ' = ';
     this.$task.appendChild(equation);
 
-    var input = el('input', 'mt-answer');
+    const input = el('input', 'mt-answer');
     input.type = 'text';
     input.setAttribute('inputmode', 'numeric');
     input.setAttribute('autocomplete', 'off');
     input.setAttribute('aria-label', a + ' ' + this.t('multiplicationSign') + ' ' + b);
     this.$task.appendChild(input);
 
-    var submit = el('button', 'mt-button mt-submit-button');
+    const submit = el('button', 'mt-button mt-submit-button');
     submit.type = 'button';
     submit.textContent = this.t('submitButton');
     this.$task.appendChild(submit);
 
-    var submitAnswer = function () { self.submit(input.value); };
+    const submitAnswer = function () { self.submit(input.value); };
     submit.addEventListener('click', submitAnswer);
     input.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.keyCode === 13) {
@@ -241,8 +241,8 @@ H5P.MultiplicationTrainer = (function ($) {
     if (!this.current) {
       return;
     }
-    var given = (rawValue === undefined || rawValue === null) ? '' : String(rawValue).trim();
-    var isCorrect = given !== '' && Number(given) === this.current.product;
+    const given = (rawValue === undefined || rawValue === null) ? '' : String(rawValue).trim();
+    const isCorrect = given !== '' && Number(given) === this.current.product;
 
     this.answered.push({
       a: this.current.a,
@@ -285,16 +285,16 @@ H5P.MultiplicationTrainer = (function ($) {
    * Render the header, summary, results table and Retry button.
    */
   MultiplicationTrainer.prototype.renderResults = function () {
-    var self = this;
+    const self = this;
     this.finished = false; // allow a later finish() after retry
     this.root.innerHTML = '';
-    var screen = el('div', 'mt-screen mt-results');
+    const screen = el('div', 'mt-screen mt-results');
 
-    var header = el('h2', 'mt-results-header');
+    const header = el('h2', 'mt-results-header');
     header.textContent = this.t('resultsHeader');
     screen.appendChild(header);
 
-    var summary = el('p', 'mt-summary');
+    const summary = el('p', 'mt-summary');
     summary.textContent = this.t('summaryText', {
       correct: this.correctCount,
       total: this.answered.length
@@ -302,35 +302,35 @@ H5P.MultiplicationTrainer = (function ($) {
     screen.appendChild(summary);
 
     if (this.answered.length === 0) {
-      var none = el('p', 'mt-no-tasks');
+      const none = el('p', 'mt-no-tasks');
       none.textContent = this.t('noTasksText');
       screen.appendChild(none);
     }
     else {
-      var table = el('table', 'mt-results-table');
-      var thead = el('thead');
-      var headRow = el('tr');
+      const table = el('table', 'mt-results-table');
+      const thead = el('thead');
+      const headRow = el('tr');
       [this.t('taskColumn'), this.t('yourAnswerColumn'), this.t('resultColumn')].forEach(function (label) {
-        var th = el('th');
+        const th = el('th');
         th.textContent = label;
         headRow.appendChild(th);
       });
       thead.appendChild(headRow);
       table.appendChild(thead);
 
-      var tbody = el('tbody');
+      const tbody = el('tbody');
       this.answered.forEach(function (item) {
-        var tr = el('tr', item.correct ? 'mt-row-correct' : 'mt-row-wrong');
+        const tr = el('tr', item.correct ? 'mt-row-correct' : 'mt-row-wrong');
 
-        var taskCell = el('td', 'mt-cell-task');
+        const taskCell = el('td', 'mt-cell-task');
         taskCell.textContent = item.a + ' ' + self.t('multiplicationSign') + ' ' + item.b + ' = ' + item.product;
         tr.appendChild(taskCell);
 
-        var answerCell = el('td', 'mt-cell-answer');
+        const answerCell = el('td', 'mt-cell-answer');
         answerCell.textContent = item.given === '' ? self.t('blankAnswer') : item.given;
         tr.appendChild(answerCell);
 
-        var resultCell = el('td', 'mt-cell-result');
+        const resultCell = el('td', 'mt-cell-result');
         resultCell.textContent = item.correct
           ? self.t('correctText')
           : self.t('wrongText', { answer: item.product });
@@ -342,7 +342,7 @@ H5P.MultiplicationTrainer = (function ($) {
       screen.appendChild(table);
     }
 
-    var retry = el('button', 'mt-button mt-retry-button');
+    const retry = el('button', 'mt-button mt-retry-button');
     retry.type = 'button';
     retry.textContent = this.t('retryButton');
     retry.addEventListener('click', function () { self.startRound(); });
@@ -356,12 +356,12 @@ H5P.MultiplicationTrainer = (function ($) {
    * Report the result to the LMS via xAPI (score = correct answers).
    */
   MultiplicationTrainer.prototype.reportXAPI = function () {
-    var max = this.answered.length;
+    const max = this.answered.length;
     if (max === 0) {
       return;
     }
-    var xAPIEvent = this.createXAPIEventTemplate('completed');
-    var def = xAPIEvent.getVerifiedStatementValue(['object', 'definition']);
+    const xAPIEvent = this.createXAPIEventTemplate('completed');
+    const def = xAPIEvent.getVerifiedStatementValue(['object', 'definition']);
     def.description = { 'en-US': 'Multiplication trainer' };
     def.type = 'http://adlnet.gov/expapi/activities/cmi.interaction';
     def.interactionType = 'fill-in';
@@ -373,7 +373,7 @@ H5P.MultiplicationTrainer = (function ($) {
   // --- small DOM / math helpers ---
 
   function el(tag, className) {
-    var node = document.createElement(tag);
+    const node = document.createElement(tag);
     if (className) {
       node.className = className;
     }
@@ -388,9 +388,9 @@ H5P.MultiplicationTrainer = (function ($) {
    * Format seconds as mm:ss (or ss for short durations under a minute).
    */
   function formatTime(totalSeconds) {
-    var s = Math.max(0, Math.round(totalSeconds));
-    var minutes = Math.floor(s / 60);
-    var seconds = s % 60;
+    const s = Math.max(0, Math.round(totalSeconds));
+    const minutes = Math.floor(s / 60);
+    const seconds = s % 60;
     if (minutes === 0) {
       return String(seconds);
     }
