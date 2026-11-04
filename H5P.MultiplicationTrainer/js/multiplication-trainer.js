@@ -65,13 +65,36 @@ H5P.MultiplicationTrainer = (function ($) {
    * Fill the placeholders (:name) of a localized string.
    */
   MultiplicationTrainer.prototype.t = function (key, vars) {
-    var text = this.params.l10n[key] !== undefined ? this.params.l10n[key] : key;
+    let text = this.params.l10n[key] !== undefined ? this.htmlDecode(this.params.l10n[key]) : key;
     if (vars) {
       Object.keys(vars).forEach(function (name) {
         text = text.split(':' + name).join(String(vars[name]));
       });
     }
     return text;
+  };
+
+  /**
+   * Retrieve decoded HTML encoded string.
+   *
+   * @param {string} input HTML encoded string.
+   * @returns {string} Decoded string.
+   */
+  MultiplicationTrainer.prototype.htmlDecode = function (input) {
+    const dparser = new DOMParser().parseFromString(input, 'text/html');
+    return dparser.documentElement.textContent;
+  };
+
+  /**
+   * Retrieve string without HTML tags.
+   *
+   * @param {string} input Input string.
+   * @returns {string} Output string.
+   */
+  MultiplicationTrainer.prototype.stripHTML = function (html) {
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    return div.textContent || div.innerText || '';
   };
 
   /**
