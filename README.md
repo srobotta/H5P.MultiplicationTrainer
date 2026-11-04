@@ -24,3 +24,14 @@ checkout this repository or download the zip and use the Python build
 script to build the h5p package. The so created file
 `Multiplication_Trainer-X.Y.Z.h5p` is the H5P file that can be used
 at your preferred ecosystem where H5 content is displayed.
+
+## Changelog
+
+### 1.0.8
+
+* Fix encoding issue when using single quotes in labels.
+* Use ES6 verbs for defining variables.
+
+### 1.0.7
+
+* First release that is ready to use.
