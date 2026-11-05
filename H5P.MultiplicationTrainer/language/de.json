@@ -10,6 +10,21 @@
       "description": "Wie lange dürfen Aufgaben gerechnet werden (in Sekunden)."
     },
     {
+      "label": "Übungsmodus",
+      "description": "Wähle die Art der Aufgaben, die geübt werden sollen.",
+      "options": [
+        {
+          "label": "Nur Multiplikation"
+        },
+        {
+          "label": "Nur Division"
+        },
+        {
+          "label": "Beides"
+        }
+      ]
+    },
+    {
       "label": "Kleinster Faktor",
       "description": "Die kleinste Zahl, welche bei einer Aufgabe als Faktor erscheinen darf."
     },
@@ -45,6 +60,10 @@
         {
           "label": "Multiplikationszeichen",
           "default": "×"
+        },
+        {
+          "label": "Divisionszeichen",
+          "default": "÷"
         },
         {
           "label": "Kopfzeile bei der Zusammenfassung des Ergebnisses",

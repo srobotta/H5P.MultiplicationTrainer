@@ -17,6 +17,7 @@ H5P.MultiplicationTrainer = (function ($) {
   var DEFAULTS = {
     intro: '<p>Solve as many multiplication tasks as you can before the time runs out!</p>',
     durationSeconds: 60,
+    practiceMode: 1,  // 1 = multiplication only, 2 = division only, 3 = both
     minFactor: 1,
     maxFactor: 10,
     l10n: {
@@ -26,6 +27,7 @@ H5P.MultiplicationTrainer = (function ($) {
       timeLeftLabel: 'Time left: :time',
       scoreLabel: 'Correct: :count',
       multiplicationSign: '×',
+      divisionSign: '÷',
       resultsHeader: "Time's up! Here are your results:",
       summaryText: 'You got :correct out of :total correct.',
       taskColumn: 'Task',
@@ -201,19 +203,25 @@ H5P.MultiplicationTrainer = (function ($) {
     const self = this;
     const a = randInt(this.minFactor, this.maxFactor);
     const b = randInt(this.minFactor, this.maxFactor);
-    this.current = { a: a, b: b, product: a * b };
+    const product = a * b;
+    const op = this.params.practiceMode === '2' ? 'd' : (this.params.practiceMode === '3' && Math.random() < 0.5 ? 'd' : 'm');
+    const taskText = op === 'd'
+      ? product + ' ' + this.t('divisionSign') + ' ' + b + ' = '
+      : a + ' ' + this.t('multiplicationSign') + ' ' + b + ' = ';
+
+    this.current = { expected: op === 'd' ? a : product, task: taskText };
 
     this.$task.innerHTML = '';
 
     const equation = el('span', 'mt-equation');
-    equation.textContent = a + ' ' + this.t('multiplicationSign') + ' ' + b + ' = ';
+    equation.textContent = taskText;
     this.$task.appendChild(equation);
 
     const input = el('input', 'mt-answer');
     input.type = 'text';
     input.setAttribute('inputmode', 'numeric');
     input.setAttribute('autocomplete', 'off');
-    input.setAttribute('aria-label', a + ' ' + this.t('multiplicationSign') + ' ' + b);
+    input.setAttribute('aria-label', taskText + this.t('yourAnswerColumn'));
     this.$task.appendChild(input);
 
     const submit = el('button', 'mt-button mt-submit-button');
@@ -242,14 +250,13 @@ H5P.MultiplicationTrainer = (function ($) {
       return;
     }
     const given = (rawValue === undefined || rawValue === null) ? '' : String(rawValue).trim();
-    const isCorrect = given !== '' && Number(given) === this.current.product;
+    const isCorrect = given !== '' && Number(given) === this.current.expected;
 
     this.answered.push({
-      a: this.current.a,
-      b: this.current.b,
-      product: this.current.product,
+      task: this.current.task,
+      expected: this.current.expected,
       given: given,
-      correct: isCorrect
+      correct: isCorrect,
     });
     if (isCorrect) {
       this.correctCount++;
@@ -310,7 +317,7 @@ H5P.MultiplicationTrainer = (function ($) {
       const table = el('table', 'mt-results-table');
       const thead = el('thead');
       const headRow = el('tr');
-      [this.t('taskColumn'), this.t('yourAnswerColumn'), this.t('resultColumn')].forEach(function (label) {
+      [this.t('taskColumn'), this.t('yourAnswerColumn'), this.t('resultColumn')].forEach(function(label) {
         const th = el('th');
         th.textContent = label;
         headRow.appendChild(th);
@@ -323,7 +330,7 @@ H5P.MultiplicationTrainer = (function ($) {
         const tr = el('tr', item.correct ? 'mt-row-correct' : 'mt-row-wrong');
 
         const taskCell = el('td', 'mt-cell-task');
-        taskCell.textContent = item.a + ' ' + self.t('multiplicationSign') + ' ' + item.b + ' = ' + item.product;
+        taskCell.textContent = item.task;
         tr.appendChild(taskCell);
 
         const answerCell = el('td', 'mt-cell-answer');
@@ -333,7 +340,7 @@ H5P.MultiplicationTrainer = (function ($) {
         const resultCell = el('td', 'mt-cell-result');
         resultCell.textContent = item.correct
           ? self.t('correctText')
-          : self.t('wrongText', { answer: item.product });
+          : self.t('wrongText', { answer: item.expected });
         tr.appendChild(resultCell);
 
         tbody.appendChild(tr);

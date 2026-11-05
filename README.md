@@ -27,6 +27,11 @@ at your preferred ecosystem where H5 content is displayed.
 
 ## Changelog
 
+### 1.1.0
+
+* Add division exercises, user may choose if multiplication,
+  division or both should be practiced by learners.
+
 ### 1.0.8
 
 * Fix encoding issue when using single quotes in labels.

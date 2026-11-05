@@ -21,6 +21,27 @@
     "default": 60
   },
   {
+    "name": "practiceMode",
+    "type": "select",
+    "label": "Practice mode",
+    "description": "Choose the type of operations to practice.",
+    "options": [
+      {
+        "value": 1,
+        "label": "Multiplication only"
+      },
+      {
+        "value": 2,
+        "label": "Division only"
+      },
+      {
+        "value": 3,
+        "label": "both"
+      }
+    ],
+    "default": 1
+  },
+  {
     "name": "minFactor",
     "type": "number",
     "label": "Smallest factor",
@@ -83,6 +104,12 @@
         "type": "text",
         "label": "Multiplication sign",
         "default": "×"
+      },
+      {
+       "name": "divisionSign",
+       "type": "text",
+       "label": "Division sign",
+        "default": "÷"
       },
       {
         "name": "resultsHeader",
